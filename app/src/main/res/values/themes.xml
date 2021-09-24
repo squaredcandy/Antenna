@@ -1,0 +1,45 @@
+<resources>
+    <!-- Launcher -->
+    <style name="Theme.Antenna.Launcher">
+        <item name="android:colorBackground">@color/white_50</item>
+        <item name="android:windowBackground">@drawable/splash_background</item>
+        <item name="android:statusBarColor">?android:attr/colorBackground</item>
+        <item name="android:navigationBarColor">?android:attr/colorBackground</item>
+    </style>
+
+    <!-- Splashscreen -->
+    <style name="Theme.Antenna.Splash" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenAnimatedIcon">@mipmap/ic_launcher_round</item>
+        <item name="windowSplashScreenBackground">@color/white_50</item>
+        <item name="postSplashScreenTheme">@style/Theme.Antenna</item>
+    </style>
+
+    <style name="Theme.Antenna" parent="Base.Theme.Antenna" />
+    <!-- Base application theme. -->
+    <style name="Base.Theme.Antenna" parent="Base.Theme">
+        <item name="colorPrimary">@color/amber_700</item>
+        <item name="colorPrimaryVariant">@color/amber_800</item>
+        <item name="colorSecondary">@color/grey_800</item>
+        <item name="colorSecondaryVariant">@color/grey_900</item>
+        <item name="android:statusBarColor">?android:attr/colorBackground</item>
+        <item name="android:colorBackground">@color/white_50</item>
+        <item name="android:windowBackground">?android:attr/colorBackground</item>
+        <item name="colorSurface">@color/white_100</item>
+        <item name="colorError">@color/red_600</item>
+        <item name="colorOnPrimary">@color/white_50</item>
+        <item name="colorOnSecondary">@color/white_50</item>
+        <item name="colorOnBackground">@color/black_900</item>
+        <item name="colorOnSurface">@color/black_900</item>
+        <item name="colorOnError">@color/white_50</item>
+    </style>
+
+    <style name="Base.Theme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:statusBarColor">?attr/colorSurface</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:navigationBarColor">?android:attr/colorBackground</item>
+        <item name="android:navigationBarDividerColor">?colorSecondary</item>
+        <item name="android:windowLightNavigationBar">true</item>
+        <item name="android:enforceStatusBarContrast">true</item>
+        <item name="android:enforceNavigationBarContrast">true</item>
+    </style>
+</resources>
