@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title">Devices</string>
+    <string name="signal_sent">Sent WOL signal</string>
+    <string name="failed_to_send">Failed to send WOL signal, check your settings</string>
+    <string name="try_again">Try again</string>
+    <string name="empty_content">Looks like you have no registered devices. Lets add one</string>
+    <string name="add_wol_device">Add WOL Device</string>
+    <string name="add_wol_device_label">Add Wake On LAN device</string>
+    <string name="wake_device_label">wake device</string>
+    <string name="toggle_selected_label">toggle selected</string>
+</resources>

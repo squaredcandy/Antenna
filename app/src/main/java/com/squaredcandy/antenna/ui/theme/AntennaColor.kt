@@ -1,4 +1,4 @@
-package com.squaredcandy.antenna.compose
+package com.squaredcandy.antenna.ui.theme
 
 import androidx.compose.material.Colors
 import androidx.compose.material.darkColors
@@ -81,7 +81,7 @@ object AntennaColor {
 
     val darkPalette = darkColors(
         primary = amber_600,
-        primaryVariant = amber_400,
+        primaryVariant = amber_700,
         secondary = grey_600,
         background = black_800,
         surface = black_700,

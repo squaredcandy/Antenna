@@ -51,6 +51,8 @@ dependencies {
     implementation(Library.Koin.AndroidArtifact)
 
     implementation(Library.Voyager.Artifact)
+    implementation(Library.Voyager.KoinArtifact)
+    implementation(Library.Voyager.TransitionArtifact)
     implementation(Library.Voyager.BottomSheetArtifact)
 
     implementation(Library.Logcat.Artifact)

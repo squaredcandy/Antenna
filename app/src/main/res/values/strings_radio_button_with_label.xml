@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="radio_selected">Selected</string>
+    <string name="radio_unselected">Unselected</string>
+    <string name="double_tap_to_select">%1$s, Double tap to select</string>
+</resources>

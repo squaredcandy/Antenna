@@ -1,4 +1,4 @@
-package com.squaredcandy.antenna.compose
+package com.squaredcandy.antenna.ui.theme
 
 import android.app.Activity
 import android.content.Context
@@ -9,9 +9,9 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.LocalView
 import com.google.accompanist.systemuicontroller.SystemUiController
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
@@ -25,7 +25,7 @@ fun AntennaTheme(
         colors = if (darkMode) AntennaColor.darkPalette else AntennaColor.lightPalette,
     ) {
         val statusBarColor = MaterialTheme.colors.background
-        val navigationBarColor = MaterialTheme.colors.background
+        val navigationBarColor = Color.Transparent
 
         // Update status bar colours
         val window = LocalContext.current.findWindow()

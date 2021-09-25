@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="edit_device">Edit device</string>
+    <string name="add_device">Add device</string>
+    <string name="update_device">Update device</string>
+    <string name="save_device">Save device</string>
+    <string name="device_name_label">Device Name</string>
+    <string name="mac_address_label">MAC Address</string>
+    <string name="ip_address_label">IP Address</string>
+    <string name="port_label">Port</string>
+
+    <string name="invalid_name">Name must not be blank</string>
+    <string name="invalid_mac_address">Invalid MAC Address</string>
+    <string name="invalid_ip_address">Invalid IP Address</string>
+</resources>

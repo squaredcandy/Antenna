@@ -149,6 +149,8 @@ object Library {
     object Voyager {
         const val Version = "1.0.0-beta10"
         const val Artifact = "cafe.adriel.voyager:voyager-navigator:$Version"
+        const val KoinArtifact = "cafe.adriel.voyager:voyager-koin:$Version"
+        const val TransitionArtifact = "cafe.adriel.voyager:voyager-transitions:$Version"
         const val BottomSheetArtifact = "cafe.adriel.voyager:voyager-bottom-sheet-navigator:$Version"
     }
 
