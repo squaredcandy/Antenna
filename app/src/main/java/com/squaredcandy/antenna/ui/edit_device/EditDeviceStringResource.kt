@@ -8,13 +8,13 @@ sealed class EditDeviceStringResource : StringResource {
     data class DeviceTitle(val isEditingDevice: Boolean) : EditDeviceStringResource()
     object DeviceNameLabel : EditDeviceStringResource()
     object MACAddressLabel : EditDeviceStringResource()
-    object IPAddressLabel : EditDeviceStringResource()
+    object BroadcastIPAddressLabel : EditDeviceStringResource()
     object PortLabel : EditDeviceStringResource()
     object UpdateDevice : EditDeviceStringResource()
     object SaveDevice : EditDeviceStringResource()
     object InvalidName : EditDeviceStringResource()
     object InvalidMACAddress : EditDeviceStringResource()
-    object InvalidIPAddress : EditDeviceStringResource()
+    object InvalidBroadcastIPAddress : EditDeviceStringResource()
 
     override fun resolve(resources: Resources): String {
         return when (this) {
@@ -27,11 +27,11 @@ sealed class EditDeviceStringResource : StringResource {
             SaveDevice -> resources.getString(R.string.save_device)
             DeviceNameLabel -> resources.getString(R.string.device_name_label)
             MACAddressLabel -> resources.getString(R.string.mac_address_label)
-            IPAddressLabel -> resources.getString(R.string.ip_address_label)
+            BroadcastIPAddressLabel -> resources.getString(R.string.broadcast_ip_address_label)
             PortLabel -> resources.getString(R.string.port_label)
             InvalidName -> resources.getString(R.string.invalid_name)
             InvalidMACAddress -> resources.getString(R.string.invalid_mac_address)
-            InvalidIPAddress -> resources.getString(R.string.invalid_ip_address)
+            InvalidBroadcastIPAddress -> resources.getString(R.string.invalid_broadcast_ip_address)
         }
     }
 }

@@ -8,6 +8,6 @@ data class Device(
     val id: Long = Random.nextLong(),
     val name: String = "",
     val macAddress: String = "",
-    val ipAddress: String = "",
+    val broadcastIPAddress: String = "",
     val port: DevicePort = DevicePort.NINE,
 )

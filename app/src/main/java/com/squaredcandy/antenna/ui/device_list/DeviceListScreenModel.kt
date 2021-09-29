@@ -15,7 +15,6 @@ import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
 
 class DeviceListScreenModel(
@@ -123,7 +122,7 @@ class DeviceListScreenModel(
     private fun onWakeDevice(device: Device) {
         coroutineScope.launch {
             val result = withContext(coroutineTools.io) {
-                WakeOnLan.sendSignal(device.ipAddress, device.macAddress, device.port.port)
+                WakeOnLan.sendSignal(device.broadcastIPAddress, device.macAddress, device.port.port)
             }
             result.fold(
                 onSuccess = {

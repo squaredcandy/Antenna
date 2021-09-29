@@ -6,10 +6,10 @@
     <string name="save_device">Save device</string>
     <string name="device_name_label">Device Name</string>
     <string name="mac_address_label">MAC Address</string>
-    <string name="ip_address_label">IP Address</string>
+    <string name="broadcast_ip_address_label">Broadcast IP Address</string>
     <string name="port_label">Port</string>
 
     <string name="invalid_name">Name must not be blank</string>
     <string name="invalid_mac_address">Invalid MAC Address</string>
-    <string name="invalid_ip_address">Invalid IP Address</string>
+    <string name="invalid_broadcast_ip_address">Invalid Broadcast IP Address</string>
 </resources>

@@ -11,7 +11,6 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -24,28 +23,28 @@ class EditDeviceScreenModel(
 
     private val mutableDeviceNameFlow = MutableStateFlow(deviceToEdit?.name)
     private val mutableDeviceMacAddressFlow = MutableStateFlow(deviceToEdit?.macAddress)
-    private val mutableDeviceIPAddressFlow = MutableStateFlow(deviceToEdit?.ipAddress)
+    private val mutableDeviceBroadcastIPAddressFlow = MutableStateFlow(deviceToEdit?.broadcastIPAddress)
     private val mutableDevicePortFlow = MutableStateFlow(deviceToEdit?.port)
 
     private val mutableValidNameStateFlow = MutableStateFlow(true)
     private val mutableValidMACAddressStateFlow = MutableStateFlow(true)
-    private val mutableValidIPAddressStateFlow = MutableStateFlow(true)
+    private val mutableValidBroadcastIPAddressStateFlow = MutableStateFlow(true)
 
     private val deviceFlow = combine(
         mutableDeviceNameFlow,
         mutableDeviceMacAddressFlow,
-        mutableDeviceIPAddressFlow,
+        mutableDeviceBroadcastIPAddressFlow,
         mutableDevicePortFlow,
     ) { name,
         macAddress,
-        ipAddress,
+        broadcastIPAddress,
         port ->
 
         Device(
             deviceToEdit?.id ?: Random.nextLong(),
             name ?: "",
             macAddress ?: "",
-            ipAddress ?: "",
+            broadcastIPAddress ?: "",
             port ?: DevicePort.NINE,
         )
     }
@@ -55,22 +54,22 @@ class EditDeviceScreenModel(
             deviceFlow,
             mutableValidNameStateFlow,
             mutableValidMACAddressStateFlow,
-            mutableValidIPAddressStateFlow,
+            mutableValidBroadcastIPAddressStateFlow,
         ) {
             device,
             validName,
             validMACAddress,
-            validIPAddress ->
+            validBroadcastIPAddress ->
 
             EditDeviceViewState(
                 isEditingDevice = deviceToEdit != null,
                 device = device,
                 validName = validName,
                 validMACAddress = validMACAddress,
-                validIPAddress = validIPAddress,
+                validBroadcastIPAddress = validBroadcastIPAddress,
                 updateName = ::updateName,
                 updateMacAddress = ::updateMacAddress,
-                updateIPAddress = ::updateIPAddress,
+                updateBroadcastIPAddress = ::updateBroadcastIPAddress,
                 updatePort = ::updatePort,
                 onSaveDevice = ::onSaveDevice,
                 onBack = ::onBack,
@@ -84,7 +83,7 @@ class EditDeviceScreenModel(
                     device = deviceToEdit ?: Device(),
                     updateName = ::updateName,
                     updateMacAddress = ::updateMacAddress,
-                    updateIPAddress = ::updateIPAddress,
+                    updateBroadcastIPAddress = ::updateBroadcastIPAddress,
                     updatePort = ::updatePort,
                     onSaveDevice = ::onSaveDevice,
                     onBack = ::onBack,
@@ -105,9 +104,9 @@ class EditDeviceScreenModel(
         mutableDeviceMacAddressFlow.value = newMacAddress
     }
 
-    private fun updateIPAddress(newIPAddress: String) {
-        mutableValidIPAddressStateFlow.value = true
-        mutableDeviceIPAddressFlow.value = newIPAddress
+    private fun updateBroadcastIPAddress(newBroadcastIPAddress: String) {
+        mutableValidBroadcastIPAddressStateFlow.value = true
+        mutableDeviceBroadcastIPAddressFlow.value = newBroadcastIPAddress
     }
 
     private fun updatePort(newPort: DevicePort) {
@@ -126,12 +125,12 @@ class EditDeviceScreenModel(
                 mutableValidMACAddressStateFlow.value = false
             }
 
-            val validIPAddress = validateIPAddress()
-            if (!validIPAddress) {
-                mutableValidIPAddressStateFlow.value = false
+            val validBroadcastIPAddress = validateBroadcastIPAddress()
+            if (!validBroadcastIPAddress) {
+                mutableValidBroadcastIPAddressStateFlow.value = false
             }
 
-            if (!validName || !validMACAddress || !validIPAddress) {
+            if (!validName || !validMACAddress || !validBroadcastIPAddress) {
                 return@launch
             }
 
@@ -149,10 +148,10 @@ class EditDeviceScreenModel(
         return@withContext mutableDeviceNameFlow.value?.isNotBlank() ?: false
     }
 
-    private suspend fun validateIPAddress(): Boolean = withContext(coroutineTools.default) {
+    private suspend fun validateBroadcastIPAddress(): Boolean = withContext(coroutineTools.default) {
         val ipV4AddressRegex = Regex("^((25[0-5]|(2[0-4]|1\\d|[1-9]|)\\d)(\\.(?!\$)|\$)){4}\$")
         val ipV6AddressRegex = Regex("(?:^|(?<=\\s))(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))(?=\\s|\$)")
-        val ipAddress = mutableDeviceIPAddressFlow.value ?: return@withContext false
+        val ipAddress = mutableDeviceBroadcastIPAddressFlow.value ?: return@withContext false
         if (ipAddress.isBlank()) return@withContext false
 
         return@withContext ipV4AddressRegex.matches(ipAddress) || ipV6AddressRegex.matches(ipAddress)

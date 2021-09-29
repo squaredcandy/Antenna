@@ -117,19 +117,19 @@ fun EditDeviceView(
                     .fillMaxWidth(),
             ) {
                 OutlinedTextField(
-                    value = viewState.device.ipAddress,
-                    onValueChange = viewState.updateIPAddress,
+                    value = viewState.device.broadcastIPAddress,
+                    onValueChange = viewState.updateBroadcastIPAddress,
                     modifier = Modifier.fillMaxWidth(),
                     label = {
-                        Text(text = EditDeviceStringResource.IPAddressLabel.resolve())
+                        Text(text = EditDeviceStringResource.BroadcastIPAddressLabel.resolve())
                     },
-                    isError = !viewState.validIPAddress,
+                    isError = !viewState.validBroadcastIPAddress,
                     singleLine = true,
                 )
 
-                if (!viewState.validIPAddress) {
+                if (!viewState.validBroadcastIPAddress) {
                     Text(
-                        text = EditDeviceStringResource.InvalidIPAddress.resolve(),
+                        text = EditDeviceStringResource.InvalidBroadcastIPAddress.resolve(),
                         color = MaterialTheme.colors.error,
                         style = MaterialTheme.typography.caption,
                     )
